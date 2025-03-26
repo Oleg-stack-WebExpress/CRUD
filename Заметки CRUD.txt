@@ -1,0 +1,58 @@
+https://selectel.ru/blog/tutorials/how-to-create-tables-in-mysql/
+
+
+https://sql-academy.org/ru/guide/operator-insert
+
+
+https://sql-academy.org/ru/guide/operator-update
+
+
+
+
+
+Добавить таблицу (IF NOT EXISTS - если она не существует)
+
+CREATE TABLE IF NOT EXISTS flowers (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(500),
+    count INT DEFAULT 0 NOT NULL
+)
+
+Добавить строку
+
+INSERT INTO flowers (name, count) VALUES ('Розы', 5)
+
+
+
+Изменить данные
+
+UPDATE flowers SET count=11 WHERE id=2
+
+
+Удаление
+
+
+DELETE FROM flowers WHERE id=2
+
+
+
+ДЗ
+
+Продукты
+
+CREATE TABLE IF NOT EXISTS products (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(500),
+	category VARCHAR(500),
+	article VARCHAR (6),
+	price  DECIMAL(6,2),
+    discounted DECIMAL(6,2)
+)
+
+
+INSERT INTO products (name, category, article, price, discounted) VALUES ('Хлопушка', 'Пиротехника', 2366, 44.00 , 39.99 );
+INSERT INTO products (name, category, article, price, discounted) VALUES ('Батарейка', 'Техника', 1123, 87.00 , 66.49 );
+INSERT INTO products (name, category, article, price, discounted) VALUES ('Поломник', 'Кухонные принадлежности', 0039, 90.50 , 87.79 );
+
+
+29:47

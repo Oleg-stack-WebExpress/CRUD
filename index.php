@@ -1,83 +1,51 @@
-<?php require_once('templates/header.php') ?>
+<?php 
+require_once('templates/header.php');
+require_once('services/products.php');
+?>
 
 <?php
 
-$db = mysqli_connect('127.0.0.1', 'root', '', 'mysite');
-
-if (!$db) {
-  echo 'Ошибка при работе с БД!';
-  exit();
-}
-
-$types = $_GET['types'] ?? null;
-$genre = $_GET['genre'] ?? null;
-$age = $_GET['age'] ?? null;
-
-if (!$types) {
-  echo "Ошибка! Попытка доступа к несуществующей таблице!";
-  exit();
-}
-
-$sql = 'SELECT * FROM ' . $types; // выводим данны выбранной таблицы
-
-// если жанр или возраст не равны null, значит есть какие-то доп условия ..
-if ($genre != null || $age != null) {
-  $sql = $sql . ' WHERE '; // .. и значит нам нужен WHERE для фильтра
-
-
-
-  // Если есть и жанр и возраст то делаем условие с and, чтобы фильтрануть и то и другое.
-  if ($genre != null && $age != null) {
-    $sql = $sql . 'genre="' . $genre . '" and age=' . $age;
-  } else if ($genre != null && $age == null) {
-    // Если есть жанр, но нету возраста, то просто добавляем в строку возраст.
-    $sql = $sql . 'genre="' . $genre . '"';
-  } else if (!$genre == null && $age != null) {
-    // Если есть возраст, но нету жанра, то просто дописываем возраст
-    $sql = $sql . 'age=' . $age;
-  }
-}
-
-
-
-
-$result = mysqli_query($db, $sql);
-
-$rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-foreach ($rows as $row) {
-  echo "<tr>";
-  echo "<td>" . $row["name"] . " </td>";
-  echo "<td>" . $row["genre"] . " </td>";
-  echo "<td>" . $row["age"] . "+ </td>";
-  echo "<td>" . $row["year"] . " год </td> </br>";
-  echo "</tr>";
-}
-echo "</table>";
-
+createTableProducts();
+$products = getAllProducts();
 
 
 ?>
 
-<form action="/" method="get">
-  <label for="types">Выберите тип просмотра:</label>
-  <select class="types" name="types">
-    <option value="films">Фильмы</option>
-    <option value="serials">Сериалы</option>
-  </select>
-  <select class="genre" name="genre">
-    <option value="Фантастика">Фантастика</option>
-    <option value="Комедия">Комедия</option>
-  </select>
-  <select class="age" name="age">
-    <option value="0">0+</option>
-    <option value="12">12+</option>
-    <option value="16">16+</option>
-    <option value="18">18+</option>
-  </select>
-  <button type="submit">Показать результат</button>
-</form>
+<div class="container">
 
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Название</th>
+        <th scope="col">Категория</th>
+        <th scope="col">Артикул</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Цена со скидкой</th>
+        <th scope="col">Действие</th>
+      </tr>
+    </thead>
+    <tbody>
 
+      <?php
+      foreach ($products as $product) {
+        ?>
+        <tr>
+          <th scope="row">1</th>
+          <td><?= $product['name'] ?></td>
+          <td><?= $product['category'] ?></td>
+          <td><?= $product['article'] ?></td>
+          <td><?= $product['price'] ?></td>
+          <td><?= $product['discounted'] ?></td>
+          <td><a>Удалить</a></td>
+        </tr>
+        <?php
+      }
+      ?>
+    </tbody>
+  </table>
+</div>
+
+<a href="utils/product.php">Страница создания не работает</a>
 
 <?php require_once('templates/footer.php') ?>
