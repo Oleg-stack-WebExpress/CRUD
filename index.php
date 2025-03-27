@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('templates/header.php');
 require_once('services/products.php');
 ?>
@@ -45,7 +45,5 @@ $products = getAllProducts();
     </tbody>
   </table>
 </div>
-
-<a href="utils/product.php">Страница создания не работает</a>
 
 <?php require_once('templates/footer.php') ?>

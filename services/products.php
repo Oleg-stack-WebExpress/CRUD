@@ -5,7 +5,7 @@
 //Получить все продукты
 function getAllProducts()
 {
-    $db = mysqli_connect('127.0.0.1', 'root', '', 'Тест');
+    $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
 
     $sql = 'SELECT * FROM products';
 
@@ -16,7 +16,7 @@ function getAllProducts()
 
 function createTableProducts()
 {
-    $db = mysqli_connect('127.0.0.1', 'root', '', 'Тест');
+    $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
 
     $sql = 'CREATE TABLE IF NOT EXISTS products (
 	id INT PRIMARY KEY AUTO_INCREMENT,

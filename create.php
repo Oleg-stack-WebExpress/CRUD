@@ -7,7 +7,7 @@ require_once('services/products.php');
 createTableProducts();
 ?>
 
-<form action="/product.php" method="POST">
+<form action="/create.php" method="POST">
     <input name="name"/>
     <input name="category"/>
     <input name="article"/>
