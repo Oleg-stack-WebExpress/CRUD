@@ -14,6 +14,21 @@ function getAllProducts()
 
 }
 
+function getProduct($id)
+{
+    $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
+
+    $sql = 'SELECT * FROM products WHERE id=' . $id;
+
+    $result = mysqli_query($db, $sql);
+    $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    if (count($products)) {
+        return $products[0];
+    }
+    return null;
+
+}
+
 function createTableProducts()
 {
     $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
@@ -27,20 +42,36 @@ function createTableProducts()
     discounted DECIMAL(6,2)
 )';
 
-return $db->query($sql);
+    return $db->query($sql);
 }
 
-function insertProduct()
+function insertProduct($name, $category, $article, $price, $discounted)
 {
+    $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
 
+    $sql = 'INSERT INTO  products (name, category, article, price, discounted) VALUES 
+    ("' . $name . '", "' . $category . '", "' . $article . '" ,"' . $price . '" ,"' . $discounted . '");';
+
+    return $db->query($sql);
 }
 
-function removeProduct()
+function removeProduct($id)
 {
+    $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
+
+    $sql = 'DELETE FROM products WHERE id=' . $id;
+
+    return $db->query($sql);
 
 }
-function updateCountProduct()
+function updateCountProduct($id, $price)
 {
+
+    $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
+
+    $sql = 'UPDATE products SET price=' . $price . ' WHERE id=2' . $id;
+
+    return $db->query($sql);
 
 }
 
