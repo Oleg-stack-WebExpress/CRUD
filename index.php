@@ -41,6 +41,7 @@ require_once('templates/header.php');
         <th scope="col">Цена</th>
         <th scope="col">Цена со скидкой</th>
         <th scope="col">Действие</th>
+        <th scope="col">Доп действие</th>
       </tr>
     </thead>
     <tbody>
@@ -50,12 +51,13 @@ require_once('templates/header.php');
         ?>
         <tr>
           <td><?= $product['id']; ?></td>
-          <td><a href="/create.php?action=edit&id=<?= $product['id'] ?>"><?= $product['name']; ?></a></td>
+          <td><a href="/info.php?id=<?= $product['id'] ?>"><?= $product['name']; ?></a></td>
           <td><?= $product['category']; ?></td>
           <td><?= $product['article']; ?></td>
           <td><?= $product['price']; ?></td>
           <td><?= $product['discounted']; ?></td>
           <td><a href="?action=remove&id=<?= $product['id'] ?>">Удалить</a></td>
+          <td><a href="/create.php?action=edit&id=<?= $product['id'] ?>">Редактировать</a></td>
         </tr>
         <?php
       }

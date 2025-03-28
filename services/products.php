@@ -69,10 +69,20 @@ function updateCountProduct($id, $price)
 
     $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
 
-    $sql = 'UPDATE products SET price=' . $price . ' WHERE id=2' . $id;
+    $sql = 'UPDATE products SET price=' . $price . ' WHERE id=' . $id;
 
     return $db->query($sql);
 
+}
+
+function getProductByID($id)
+{
+    $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
+
+    $sql = 'SELECT FROM products WHERE id=' . $id;
+    
+
+    return $db->query($sql);
 }
 
 ?>
