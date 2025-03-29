@@ -79,8 +79,8 @@ function getProductByID($id)
 {
     $db = mysqli_connect('127.0.0.1', 'root', '', 'test');
 
-    $sql = 'SELECT FROM products WHERE id=' . $id;
-    
+    $sql = 'SELECT * FROM `products` WHERE id=' . $id;
+
 
     return $db->query($sql);
 }

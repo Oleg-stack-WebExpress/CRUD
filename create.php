@@ -3,26 +3,7 @@ require_once('services/products.php');
 createTableProducts();
 
 $errors = null;
-$isEdit = false;
 $product = null;
-if (array_key_exists('id', $_GET) && array_key_exists('action', $_GET) && $_GET['action'] == 'edit') {
-    $isEdit = true;
-    $id = htmlspecialchars($_GET['id']);
-    $product = getProduct($id);
-
-
-    if (array_key_exists('price', $_POST)) {
-        $price = htmlspecialchars($_POST['price']);
-        if (updateCountProduct($id, $price)) {
-            header('Location:/');
-        } else {
-            $errors = 'Ошибка обновления!';
-        }
-
-    }
-
-
-} else {
 
     if (
         array_key_exists('name', $_POST) && array_key_exists('category', $_POST)
@@ -45,7 +26,6 @@ if (array_key_exists('id', $_GET) && array_key_exists('action', $_GET) && $_GET[
 
     }
 
-}
 ?>
 
 
@@ -58,12 +38,12 @@ if ($errors) {
 ?>
 
 <form action="#" method="POST">
-    <input name="name" value="<?= $product ? $product['name'] : '' ?>" placeholder="Название" <?= $isEdit ? 'disabled' : '' ?> />
+    <input name="name" value="<?= $product ? $product['name'] : '' ?>" placeholder="Название" />
     <input name="category" value="<?= $product ? $product['category'] : '' ?>" placeholder="Категория" />
     <input name="article" value="<?= $product ? $product['article'] : '' ?>" placeholder="Артикул" />
     <input name="price" value="<?= $product ? $product['price'] : '' ?>" placeholder="Цена" />
     <input name="discounted" value="<?= $product ? $product['discounted'] : '' ?>" placeholder="Цена со скидкой" />
-    <input type="submit" value="<?= $isEdit ? 'Редактировать' : 'Создать' ?>">
+    <input type="submit" value="Создать">
 </form>
 
 

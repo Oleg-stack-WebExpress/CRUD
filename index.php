@@ -57,7 +57,7 @@ require_once('templates/header.php');
           <td><?= $product['price']; ?></td>
           <td><?= $product['discounted']; ?></td>
           <td><a href="?action=remove&id=<?= $product['id'] ?>">Удалить</a></td>
-          <td><a href="/create.php?action=edit&id=<?= $product['id'] ?>">Редактировать</a></td>
+          <td><a href="/edit.php?id=<?= $product['id'] ?>">Редактировать</a></td>
         </tr>
         <?php
       }
